@@ -9,7 +9,7 @@ on:
         required: true
         
 jobs:
-  rewrite_pr_title:
+  rewrite-pr-title:
     name: Rewrite PR title
     runs-on: ubuntu-latest
     steps:
@@ -19,7 +19,7 @@ jobs:
           token: ${{ secrets.token }}
           ticketLink: 'https://webwhales.teamwork.com/#/tasks/%ticketNumber%'
           ticketPrefix: 'feat/'
-          titleFormat: [%prefix%%id%] %title%
+          titleFormat: '[%prefix%%id%] %title%'
           titleRegex: '(?<ticketNumber>\d+)'
           branchRegex: '^feat\/(?<ticketNumber>\d+)'
           bodyRegex: 'feat\/(?<ticketNumber>\d+)'
