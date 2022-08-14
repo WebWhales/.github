@@ -1,0 +1,26 @@
+on:
+  workflow_call:
+    inputs:
+      username:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
+        
+jobs:
+  rewrite_pr_title:
+    name: Rewrite PR title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rewrite PR title with task number
+        uses: neofinancial/ticket-check-action@v1
+        with:
+          token: ${{ secrets.token }}
+          ticketLink: 'https://webwhales.teamwork.com/#/tasks/%ticketNumber%'
+          ticketPrefix: 'feat/'
+          titleFormat: [%prefix%%id%] %title%
+          titleRegex: '(?<ticketNumber>\d+)'
+          branchRegex: '^feat\/(?<ticketNumber>\d+)'
+          bodyRegex: 'feat\/(?<ticketNumber>\d+)'
+          bodyURLRegex: 'http(s?):\/\/webwhales\.teamwork\.com\/#\/tasks\/(?<ticketNumber>\d+)'
