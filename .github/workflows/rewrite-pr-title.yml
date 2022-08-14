@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Rewrite PR title with task number
-        uses: neofinancial/ticket-check-action@v1
+        uses: webwhales/ga-ticket-check-action@master
         with:
           token: ${{ secrets.token }}
           ticketLink: 'https://webwhales.teamwork.com/#/tasks/%ticketNumber%'
